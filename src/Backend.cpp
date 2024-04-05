@@ -33,17 +33,16 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/IR/Verifier.h"
 #include "llvm/IR/PassManager.h"
-#include "llvm/Bitcode/ReaderWriter.h"
+#include "llvm/Bitcode/BitcodeReader.h"
 #include "llvm/CodeGen/RegAllocRegistry.h"
 #include "llvm/IR/DataLayout.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/MC/SubtargetFeature.h"
 #include "llvm/IR/Module.h"
-#include "llvm/PassManager.h"
 #include "llvm/Support/ManagedStatic.h"
 #include "llvm/Support/SourceMgr.h"
-#include "llvm/Support/TargetRegistry.h"
-#include "llvm/Target/TargetLibraryInfo.h"
+#include "llvm/MC/TargetRegistry.h"
+#include "llvm/Analysis/TargetLibraryInfo.h"
 #include "llvm/Transforms/IPO.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm-c/Target.h"
@@ -77,13 +76,13 @@ extern "C" {
 #include "intl.h"
 #include "langhooks.h"
 #include "output.h"
-#include "params.h"
+// #include "params.h" No such file
 #ifndef DISABLE_VERSION_CHECK
 #include "plugin-version.h"
 #endif
 #include "target.h" // For targetm.
 #include "toplev.h"
-#include "tree-flow.h"
+// #include "tree-flow.h" No such file
 #include "tree-pass.h"
 #include "version.h"
 
@@ -96,9 +95,9 @@ tree default_mangle_decl_assembler_name(tree, tree);
 // Trees header.
 #include "dragonegg/Trees.h"
 
-#if (GCC_MAJOR != 4)
-#error Unsupported GCC major version
-#endif
+// #if (GCC_MAJOR != 4)
+// #error Unsupported GCC major version
+// #endif
 
 using namespace llvm;
 
@@ -529,9 +528,9 @@ static void CreateTargetMachine(const std::string &TargetTriple) {
 static void output_ident(const char *ident_str) {
   const char *ident_asm_op = "\t.ident\t";
 #if (GCC_MINOR < 8)
-#ifdef IDENT_ASM_OP
-  ident_asm_op = IDENT_ASM_OP;
-#endif
+// #ifdef IDENT_ASM_OP
+//   ident_asm_op = IDENT_ASM_OP;
+// #endif
 #endif
   std::string Directive(ident_asm_op);
   Directive += "\"";
@@ -549,20 +548,20 @@ static void CreateModule(const std::string &TargetTriple) {
   TheModule = new Module(ModuleID, getGlobalContext());
 
 #if (GCC_MINOR < 8)
-#ifdef IDENT_ASM_OP
-  if (!flag_no_ident) {
-    std::string IdentString;
-    const char *pkg_version = "(GNU) ";
+// #ifdef IDENT_ASM_OP
+//   if (!flag_no_ident) {
+//     std::string IdentString;
+//     const char *pkg_version = "(GNU) ";
 
-    if (strcmp("(GCC) ", pkgversion_string))
-      pkg_version = pkgversion_string;
+//     if (strcmp("(GCC) ", pkgversion_string))
+//       pkg_version = pkgversion_string;
 
-    IdentString += "GCC: ";
-    IdentString += pkg_version;
-    IdentString += version_string;
-    output_ident(IdentString.c_str());
-  }
-#endif
+//     IdentString += "GCC: ";
+//     IdentString += pkg_version;
+//     IdentString += version_string;
+//     output_ident(IdentString.c_str());
+//   }
+// #endif
 #endif
 
   // Install information about the target triple and data layout into the module

@@ -32,9 +32,9 @@
 #include "llvm/ADT/StringExtras.h"
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/IR/Module.h"
-#include "llvm/Support/CFG.h"
+#include "llvm/IR/CFG.h"
 #include "llvm/Support/Debug.h"
-#include "llvm/Target/TargetLowering.h"
+#include "llvm/CodeGen/TargetLowering.h"
 
 // System headers
 #include <gmp.h>
@@ -65,7 +65,7 @@ extern "C" {
 #include "target.h" // For targetm.
 #include "tm_p.h"
 #include "toplev.h"
-#include "tree-flow.h"
+// #include "tree-flow.h" No such file
 #include "tree-pass.h"
 
 using namespace llvm;
@@ -1682,9 +1682,9 @@ void TreeToLLVM::EmitAggregate(tree exp, const MemRef &DestLoc) {
 ///
 static unsigned int get_constant_alignment(tree exp) {
   unsigned int align = TYPE_ALIGN(TREE_TYPE(exp));
-#ifdef CONSTANT_ALIGNMENT
-  align = CONSTANT_ALIGNMENT(exp, align);
-#endif
+// #ifdef CONSTANT_ALIGNMENT
+//   align = CONSTANT_ALIGNMENT(exp, align);
+// #endif
   return align;
 }
 

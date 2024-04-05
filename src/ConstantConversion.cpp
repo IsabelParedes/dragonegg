@@ -1496,9 +1496,9 @@ static Constant *AddressOfSimpleConstant(tree exp, TargetFolder &Folder) {
   Slot = new GlobalVariable(*TheModule, Init->getType(), true,
                             GlobalVariable::LinkerPrivateLinkage, Init, ".cst");
   unsigned align = TYPE_ALIGN(main_type(exp));
-#ifdef CONSTANT_ALIGNMENT
-  align = CONSTANT_ALIGNMENT(exp, align);
-#endif
+// #ifdef CONSTANT_ALIGNMENT
+//   align = CONSTANT_ALIGNMENT(exp, align);
+// #endif
   Slot->setAlignment(align);
   // Allow identical constants to be merged if the user allowed it.
   // FIXME: maybe this flag should be set unconditionally, and instead the
