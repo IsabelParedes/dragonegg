@@ -28,7 +28,7 @@
 
 // LLVM headers
 #include "llvm-c/DebugInfo.h"
-#include "llvm/DIBuilder.h"
+#include "llvm/IR/DIBuilder.h"
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/ValueHandle.h"
 
