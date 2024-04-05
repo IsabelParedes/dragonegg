@@ -31,7 +31,7 @@
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/FormattedStream.h"
-#include "llvm/Support/TargetFolder.h"
+#include "llvm/Analysis/TargetFolder.h"
 
 struct basic_block_def;
 union gimple_statement_d;
