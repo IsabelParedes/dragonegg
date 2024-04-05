@@ -30,7 +30,7 @@
 #include "llvm-c/DebugInfo.h"
 #include "llvm/IR/DIBuilder.h"
 #include "llvm/Support/Allocator.h"
-#include "llvm/Support/ValueHandle.h"
+#include "llvm/IR/ValueHandle.h"
 
 // System headers
 #include <map>
