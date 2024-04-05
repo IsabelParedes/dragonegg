@@ -29,16 +29,16 @@ static void PrintTriple(Triple &T) {
   std::cout << T.getTriple() << "\n";
 }
 static void PrintArchName(Triple &T) {
-  std::cout << T.getArchTypeName(T.getArch()) << "\n";
+  std::cout << T.getArchTypeName(T.getArch()).str() << "\n";
 }
 static void PrintVendorName(Triple &T) {
-  std::cout << T.getVendorTypeName(T.getVendor()) << "\n";
+  std::cout << T.getVendorTypeName(T.getVendor()).str() << "\n";
 }
 static void PrintOSName(Triple &T) {
-  std::cout << T.getOSTypeName(T.getOS()) << "\n";
+  std::cout << T.getOSTypeName(T.getOS()).str() << "\n";
 }
 static void PrintArchTypePrefix(Triple &T) {
-  std::cout << T.getArchTypePrefix(T.getArch()) << "\n";
+  std::cout << T.getArchTypePrefix(T.getArch()).str() << "\n";
 }
 
 struct Option {
